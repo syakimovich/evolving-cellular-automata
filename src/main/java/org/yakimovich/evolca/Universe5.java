@@ -2,21 +2,26 @@ package org.yakimovich.evolca;
 
 import org.yakimovich.evolca.utils.ArrayUtils;
 
+import java.io.File;
+
 public class Universe5 extends Universe{
     private char[][] currentCells;
     private char[][] previousCells;
     private char[][][][][] matrix;
+    private char numberOfStates;
     private boolean isCircular = false;
     final public static char OUT_VALUE = 0;
 
-    public Universe5(char[][] initialCells, boolean isCircular){
-        currentCells = ArrayUtils.copy2DArray(initialCells);
-        previousCells = ArrayUtils.copy2DArray(initialCells);
+    public Universe5(char[][] initialCells, char[][][][][] matrix, char numberOfStates,  boolean isCircular){
+        this.currentCells = ArrayUtils.copy2DArray(initialCells);
+        this.previousCells = ArrayUtils.copy2DArray(initialCells);
+        this.matrix = ArrayUtils.copy5DArray(matrix);
+        this.numberOfStates = numberOfStates;
         this.isCircular = isCircular;
     }
 
     @Override
-    public void tick(){
+    public void doTick(){
         char[][] prevCellsRef = previousCells;
         previousCells = currentCells;
         currentCells = prevCellsRef;
@@ -52,5 +57,48 @@ public class Universe5 extends Universe{
     @Override
     public char[][] getCells() {
         return ArrayUtils.copy2DArray(currentCells);
+    }
+
+    @Override
+    public char getValue(int i, int j) {
+        return currentCells[i][j];
+    }
+
+    @Override
+    public int getWidth() {
+        return currentCells.length;
+    }
+
+    @Override
+    public int getHeight() {
+        if(currentCells.length < 1){
+            return 0;
+        }
+        return currentCells[0].length;
+    }
+
+    @Override
+    public boolean isCircular() {
+        return isCircular;
+    }
+
+    @Override
+    public char getNumberOfStates() {
+        return numberOfStates;
+    }
+
+    @Override
+    public void resetToInitialState() {
+        //TODO
+    }
+
+    @Override
+    public void saveToFile(File file) {
+        //TODO
+    }
+
+    @Override
+    public void loadFromFile(File file) {
+        //TODO
     }
 }
