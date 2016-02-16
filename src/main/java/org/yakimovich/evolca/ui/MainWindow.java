@@ -2,7 +2,7 @@ package org.yakimovich.evolca.ui;
 
 import org.yakimovich.evolca.Measure;
 import org.yakimovich.evolca.Universe;
-import org.yakimovich.evolca.measures.AvgNeighborColourIndex;
+import org.yakimovich.evolca.measures.AvgNeighborColourIndex5;
 import org.yakimovich.evolca.measures.NonZeroPercentage;
 
 import javax.swing.*;
@@ -40,7 +40,7 @@ public class MainWindow extends JFrame {
         startLoop();
 
         measures = new ArrayList<Measure>();
-        measures.add(new AvgNeighborColourIndex());
+        measures.add(new AvgNeighborColourIndex5());
         measures.add(new NonZeroPercentage());
     }
 

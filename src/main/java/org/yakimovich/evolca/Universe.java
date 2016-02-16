@@ -28,6 +28,10 @@ public abstract class Universe implements Serializable {
         return age;
     }
 
+    public void setAge(int age){
+        this.age = age;
+    }
+
     public abstract char[][] getCells();
 
     public abstract char getValue(int i, int j);

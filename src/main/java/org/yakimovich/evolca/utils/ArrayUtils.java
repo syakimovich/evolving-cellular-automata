@@ -24,6 +24,24 @@ public class ArrayUtils{
         return result;
     }
 
+    public static int difference5D(char[][][][][] first, char[][][][][] second){
+        int result = 0;
+        for(int i1 = 0; i1 < first.length; i1++){
+            for(int i2 = 0; i2 < first.length; i2++){
+                for(int i3 = 0; i3 < first.length; i3++){
+                    for(int i4 = 0; i4 < first.length; i4++){
+                        for(int i5 = 0; i5 < first.length; i5++){
+                            if(first[i1][i2][i3][i4][i5] != second[i1][i2][i3][i4][i5]){
+                                result++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
     public static char[][] createRandom2DArray(int n, int m, char numberOfStates){
         Random rand = new Random();
         char[][] result = new char[n][m];

@@ -2,9 +2,13 @@ package org.yakimovich.evolca;
 
 import org.yakimovich.evolca.utils.ArrayUtils;
 
-import java.io.File;
+import java.io.*;
 
+/**
+ * Cell next state depends only from it previous state and 4 neighbors.
+ */
 public class Universe5 extends Universe{
+    private char[][] initialCells;
     private char[][] currentCells;
     private char[][] previousCells;
     private char[][][][][] matrix;
@@ -15,6 +19,7 @@ public class Universe5 extends Universe{
     public Universe5(char[][] initialCells, char[][][][][] matrix, char numberOfStates,  boolean isCircular){
         this.currentCells = ArrayUtils.copy2DArray(initialCells);
         this.previousCells = ArrayUtils.copy2DArray(initialCells);
+        this.initialCells = ArrayUtils.copy2DArray(initialCells);
         this.matrix = ArrayUtils.copy5DArray(matrix);
         this.numberOfStates = numberOfStates;
         this.isCircular = isCircular;
@@ -89,16 +94,31 @@ public class Universe5 extends Universe{
 
     @Override
     public void resetToInitialState() {
-        //TODO
+        this.currentCells = ArrayUtils.copy2DArray(initialCells);
+        this.previousCells = ArrayUtils.copy2DArray(initialCells);
+        this.setAge(0);
     }
 
     @Override
-    public void saveToFile(File file) {
-        //TODO
+    public void loadFromFile(File file) throws IOException, ClassNotFoundException {
+        FileInputStream fin = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fin);
+        Universe5 loadedUniverse = (Universe5) ois.readObject();
+        ois.close();
+        this.setAge(loadedUniverse.getAge());
+        this.currentCells = loadedUniverse.currentCells;
+        this.previousCells = loadedUniverse.previousCells;
+        this.initialCells = loadedUniverse.initialCells;
+        this.matrix = loadedUniverse.matrix;
+        this.numberOfStates = loadedUniverse.numberOfStates;
+        this.isCircular = loadedUniverse.isCircular;
     }
 
     @Override
-    public void loadFromFile(File file) {
-        //TODO
+    public void saveToFile(File file) throws IOException {
+        FileOutputStream fout = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fout);
+        oos.writeObject(this);
+        oos.close();
     }
 }
