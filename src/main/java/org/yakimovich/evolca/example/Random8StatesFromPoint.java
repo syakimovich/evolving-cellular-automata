@@ -24,6 +24,7 @@ public class Random8StatesFromPoint {
         for(int i = 0; i < 10; i++){
             char[][] initialCells = CellsArrayGenerator.create1Point(size);
             char[][][][][] matrix = ArrayUtils.createRandomMatrix5D(thresholds2);
+            matrix[0][0][0][0][0] = 0;
             Universe u = new Universe5(initialCells, matrix, numberOfStates, isCircular);
             universes.add(u);
         }
