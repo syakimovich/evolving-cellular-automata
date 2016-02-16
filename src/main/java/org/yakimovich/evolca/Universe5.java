@@ -16,7 +16,7 @@ public class Universe5 extends Universe{
     private boolean isCircular = false;
     final public static char OUT_VALUE = 0;
 
-    public Universe5(char[][] initialCells, char[][][][][] matrix, char numberOfStates,  boolean isCircular){
+    public Universe5(char[][] initialCells, char[][][][][] matrix, char numberOfStates, boolean isCircular){
         this.currentCells = ArrayUtils.copy2DArray(initialCells);
         this.previousCells = ArrayUtils.copy2DArray(initialCells);
         this.initialCells = ArrayUtils.copy2DArray(initialCells);
@@ -39,19 +39,19 @@ public class Universe5 extends Universe{
                 int a0 = ArrayUtils.getSafeValue2D(p, q, previousCells, isCircular, OUT_VALUE);
 
                 p = i - 1;
-                q = j - 1;
+                q = j;
                 int a1 = ArrayUtils.getSafeValue2D(p, q, previousCells, isCircular, OUT_VALUE);
 
                 p = i + 1;
-                q = j - 1;
+                q = j;
                 int a2 = ArrayUtils.getSafeValue2D(p, q, previousCells, isCircular, OUT_VALUE);
 
-                p = i - 1;
+                p = i;
                 q = j + 1;
                 int a3 = ArrayUtils.getSafeValue2D(p, q, previousCells, isCircular, OUT_VALUE);
 
-                p = i + 1;
-                q = j + 1;
+                p = i;
+                q = j - 1;
                 int a4 = ArrayUtils.getSafeValue2D(p, q, previousCells, isCircular, OUT_VALUE);
 
                 currentCells[i][j] = matrix[a0][a1][a2][a3][a4];
