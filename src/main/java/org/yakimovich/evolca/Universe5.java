@@ -5,7 +5,7 @@ import org.yakimovich.evolca.utils.ArrayUtils;
 import java.io.*;
 
 /**
- * Cell next state depends only from it previous state and 4 neighbors.
+ * Cell next state depends only from its previous state and 4 neighbors.
  */
 public class Universe5 extends Universe{
     private char[][] initialCells;

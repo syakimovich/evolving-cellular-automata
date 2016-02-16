@@ -37,12 +37,17 @@ public class SimpleJeneticsExample {
 
     private static Double evaluate(final Genotype<CharacterGene> gt) {
 
-        Universe5 u = genotypeToUniverse5(gt);
-        u.tick(ticks);
         AvgNeighborColourIndex5 anci = new AvgNeighborColourIndex5();
         NonZeroPercentage nzp = new NonZeroPercentage();
 
-        return anci.getValue(u) - Math.abs(nzp.getValue(u) - 10);
+        Universe5 u = genotypeToUniverse5(gt);
+        u.tick(25);
+        double nzp1 = nzp.getValue(u);
+        u.tick(10);
+        double nzp2 = nzp.getValue(u);
+        double anci2 = anci.getValue(u);
+
+        return anci2 - Math.abs(nzp2 - nzp1) * 2 - Math.abs(nzp2 - 10);
     }
 
     public static void main(String[] args){
