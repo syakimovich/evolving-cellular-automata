@@ -22,7 +22,10 @@ public class UniversePanelWithInfo extends JPanel{
         this.add(this.universePanel);
         label = new JLabel("initial text");
         this.add(label);
-        setSize(universePanel.getSize());
+        Dimension size = new Dimension(universePanel.getWidth(),
+                universePanel.getHeight() + 100);
+        setSize(size);
+        setMinimumSize(size);
 	}
 	
 	public void setLabelText(String text){

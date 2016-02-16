@@ -28,6 +28,7 @@ public class MainWindow extends JFrame {
     private List<UniversePanelWithInfo> universePanels;
     private List<Measure> measures;
     private boolean tickAll = false;
+    private JPanel universesPanel = new JPanel();
     private JPanel controlsPanel = new JPanel();
     private JButton startAllButton = new JButton();
     private JButton stopAllButton = new JButton();
@@ -49,16 +50,14 @@ public class MainWindow extends JFrame {
         Iterator<Universe> universesIterator = universes.iterator();
 
         Container contentPane = getContentPane();
-        contentPane.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 1;
-        c.weighty = 1;
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+
+        GridLayout gl = new GridLayout(0, 5);
+        universesPanel.setLayout(gl);
+
         universePanels = new ArrayList<UniversePanelWithInfo>();
         for(int i = 0; i < numberOfColumns; i++){
             for(int j = 0; j < numberOfRows; j++){
-                c.gridx = i;
-                c.gridy = j;
 
                 if(universesIterator.hasNext()){
                     final UniversePanelWithInfo upi = new UniversePanelWithInfo(universesIterator.next(), 2);
@@ -80,7 +79,7 @@ public class MainWindow extends JFrame {
                         }
                     });
                     universePanels.add(upi);
-                    contentPane.add(upi, c);
+                    universesPanel.add(upi);
                 }
             }
         }
@@ -99,14 +98,18 @@ public class MainWindow extends JFrame {
                 tickAll = false;
             }
         });
+        int universePanelWidth = universePanels.get(0).getWidth();
+        int universePanelHeight = universePanels.get(0).getHeight();
+
+        universesPanel.setSize(universePanelWidth * 5, universePanelHeight * 2);
 
         controlsPanel.add(startAllButton);
         controlsPanel.add(stopAllButton);
+        controlsPanel.setMaximumSize(new Dimension(500, 200));
+        controlsPanel.setSize(new Dimension(500, 200));
 
-        c.gridx = 0;
-        c.gridy = numberOfRows;
-        c.gridwidth = numberOfColumns;
-        contentPane.add(controlsPanel, c);
+        contentPane.add(universesPanel);
+        contentPane.add(controlsPanel);
         repaint();
     }
 
