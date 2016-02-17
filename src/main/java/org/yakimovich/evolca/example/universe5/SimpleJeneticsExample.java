@@ -1,4 +1,4 @@
-package org.yakimovich.evolca.example;
+package org.yakimovich.evolca.example.universe5;
 
 import org.jenetics.*;
 import org.jenetics.engine.Engine;

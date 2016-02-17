@@ -12,6 +12,14 @@ public class ArrayUtils{
         return result;
     }
 
+    public static int[][] copy2DArray(int[][] original){
+        int[][] result = new int[original.length][];
+        for(int i = 0; i < original.length; i++){
+            result[i] = Arrays.copyOf(original[i], original[i].length);
+        }
+        return result;
+    }
+
     public static int difference2D(char[][] first, char[][] second){
         int result = 0;
         for(int i = 0; i < first.length; i++){
@@ -42,12 +50,23 @@ public class ArrayUtils{
         return result;
     }
 
-    public static char[][] createRandom2DArray(int n, int m, char numberOfStates){
+    public static char[][] createRandom2DCharArray(int n, int m, char numberOfStates){
         Random rand = new Random();
         char[][] result = new char[n][m];
         for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
                 result[i][j] = (char) rand.nextInt(numberOfStates);
+            }
+        }
+        return result;
+    }
+
+    public static int[][] createRandom2DIntArray(int n, int m, int numberOfStates){
+        Random rand = new Random();
+        int[][] result = new int[n][m];
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                result[i][j] = rand.nextInt(numberOfStates);
             }
         }
         return result;

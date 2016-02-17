@@ -24,7 +24,6 @@ public class MainWindow extends JFrame {
     private int numberOfColumns = 5;
     private int numberOfRows = 2;
     private long sleepTimeInMilliseconds = 500;
-    private List<Universe> universes;
     private List<UniversePanelWithInfo> universePanels;
     private List<Measure> measures;
     private boolean tickAll = false;
@@ -46,7 +45,6 @@ public class MainWindow extends JFrame {
     }
 
     public void setUniverses(List<Universe> universes){
-        this.universes = universes;
         Iterator<Universe> universesIterator = universes.iterator();
 
         Container contentPane = getContentPane();
@@ -134,8 +132,8 @@ public class MainWindow extends JFrame {
     }
 
     private void tickAll(){
-        for(Universe u : universes){
-            u.tick();
+        for(UniversePanelWithInfo up : universePanels){
+            up.getUniverse().tick();
         }
         repaint();
     }
@@ -199,7 +197,7 @@ public class MainWindow extends JFrame {
                     int rVal = c.showSaveDialog(MainWindow.this);
                     if (rVal == JFileChooser.APPROVE_OPTION) {
                         try {
-                            upi.getUniverse().saveToFile(c.getSelectedFile());
+                            Universe.saveToFile(upi.getUniverse(), c.getSelectedFile());
                             JOptionPane.showMessageDialog(null, "The universe is successfully saved to file.");
                         } catch (IOException e1) {
                             JOptionPane.showMessageDialog(null, "The universe is not saved. Error: " + e1);
@@ -218,7 +216,7 @@ public class MainWindow extends JFrame {
                     int rVal = c.showSaveDialog(MainWindow.this);
                     if (rVal == JFileChooser.APPROVE_OPTION) {
                         try {
-                            upi.getUniverse().loadFromFile(c.getSelectedFile());
+                            upi.setUniverse(Universe.loadFromFile(c.getSelectedFile()));
                             JOptionPane.showMessageDialog(null, "The universe is successfully loaded from file.");
                         } catch (IOException e1) {
                             JOptionPane.showMessageDialog(null, "The universe is not loaded. Error: " + e1);

@@ -29,7 +29,7 @@ public class ArrayUtilsTest {
                 oneArray2D[i][j] = 1;
             }
         }
-        randArray2D = ArrayUtils.createRandom2DArray(SIZE_1, SIZE_2, RAND_ARRAY_STATES);
+        randArray2D = ArrayUtils.createRandom2DCharArray(SIZE_1, SIZE_2, RAND_ARRAY_STATES);
     }
 
     @Test

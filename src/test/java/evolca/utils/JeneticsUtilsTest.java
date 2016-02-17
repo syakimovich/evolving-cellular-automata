@@ -21,7 +21,7 @@ public class JeneticsUtilsTest {
 
     @Before
     public void setUp(){
-        randArray2D = ArrayUtils.createRandom2DArray(SIZE_1, SIZE_2, RAND_ARRAY_STATES);
+        randArray2D = ArrayUtils.createRandom2DCharArray(SIZE_1, SIZE_2, RAND_ARRAY_STATES);
         randArray5D = ArrayUtils.createRandomMatrix5D(THRESHOLDS);
     }
 

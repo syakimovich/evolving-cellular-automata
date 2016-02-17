@@ -1,15 +1,30 @@
 package org.yakimovich.evolca;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
+import org.yakimovich.evolca.utils.ArrayUtils;
+
+import java.io.*;
 
 /**
  * Matrix of cells in different states.
  */
 public abstract class Universe implements Serializable {
-
     private int age = 0;
+
+    protected char[][] initialCells;
+    protected char[][] currentCells;
+    protected char[][] previousCells;
+    protected char numberOfStates;
+    protected boolean isCircular = false;
+
+    final public static char OUT_VALUE = 0;
+
+    public Universe(char[][] initialCells, char numberOfStates, boolean isCircular){
+        this.currentCells = ArrayUtils.copy2DArray(initialCells);
+        this.previousCells = ArrayUtils.copy2DArray(initialCells);
+        this.initialCells = ArrayUtils.copy2DArray(initialCells);
+        this.numberOfStates = numberOfStates;
+        this.isCircular = isCircular;
+    }
 
     public abstract void doTick();
 
@@ -32,21 +47,51 @@ public abstract class Universe implements Serializable {
         this.age = age;
     }
 
-    public abstract char[][] getCells();
+    public char[][] getCells() {
+        return ArrayUtils.copy2DArray(currentCells);
+    }
 
-    public abstract char getValue(int i, int j);
+    public char getValue(int i, int j) {
+        return currentCells[i][j];
+    }
 
-    public abstract int getWidth();
+    public int getWidth() {
+        return currentCells.length;
+    }
 
-    public abstract int getHeight();
+    public int getHeight() {
+        if(currentCells.length < 1){
+            return 0;
+        }
+        return currentCells[0].length;
+    }
 
-    public abstract boolean isCircular();
+    public boolean isCircular() {
+        return isCircular;
+    }
 
-    public abstract char getNumberOfStates();
+    public char getNumberOfStates() {
+        return numberOfStates;
+    }
 
-    public abstract void resetToInitialState();
+    public void resetToInitialState() {
+        this.currentCells = ArrayUtils.copy2DArray(initialCells);
+        this.previousCells = ArrayUtils.copy2DArray(initialCells);
+        this.setAge(0);
+    }
 
-    public abstract void saveToFile(File file) throws IOException;
+    public static Universe loadFromFile(File file) throws IOException, ClassNotFoundException {
+        FileInputStream fin = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fin);
+        Universe loadedUniverse = (Universe) ois.readObject();
+        ois.close();
+        return loadedUniverse;
+    }
 
-    public abstract void loadFromFile(File file) throws IOException, ClassNotFoundException;
+    public static void saveToFile(Universe universe, File file) throws IOException {
+        FileOutputStream fout = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fout);
+        oos.writeObject(universe);
+        oos.close();
+    }
 }

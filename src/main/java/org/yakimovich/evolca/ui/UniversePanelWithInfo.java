@@ -22,11 +22,25 @@ public class UniversePanelWithInfo extends JPanel{
         this.add(this.universePanel);
         label = new JLabel("initial text");
         this.add(label);
+        updateSize();
+	}
+
+    private void updateSize(){
         Dimension size = new Dimension(universePanel.getWidth(),
                 universePanel.getHeight() + 100);
         setSize(size);
         setMinimumSize(size);
-	}
+    }
+
+    public void setUniverse(Universe universe){
+        universePanel.setUniverse(universe);
+        updateSize();
+    }
+
+    public void setZoom(int zoom){
+        universePanel.setZoom(zoom);
+        updateSize();
+    }
 	
 	public void setLabelText(String text){
 		label.setText(text);

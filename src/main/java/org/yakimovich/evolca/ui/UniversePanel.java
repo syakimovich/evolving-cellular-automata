@@ -15,19 +15,24 @@ public class UniversePanel extends JPanel{
 	public UniversePanel(Universe universe, int zoom){
 		this.universe = universe;
 		this.zoom = zoom;
+        updateSize();
+	}
+
+	private void updateSize(){
         Dimension size = new Dimension(universe.getWidth() * zoom,
                 universe.getHeight() * zoom);
-		setMinimumSize(size);
+        setMinimumSize(size);
         setSize(size);
         setMaximumSize(size);
-	}
+    }
 	
 	public Universe getUniverse() {
 		return universe;
 	}
 
 	public void setUniverse(Universe universe) {
-		this.universe = universe;
+        this.universe = universe;
+        updateSize();
 	}
 
 	public int getZoom() {
@@ -35,7 +40,8 @@ public class UniversePanel extends JPanel{
 	}
 
 	public void setZoom(int zoom) {
-		this.zoom = zoom;
+        this.zoom = zoom;
+        updateSize();
 	}
 
 	public void paint(Graphics g) {

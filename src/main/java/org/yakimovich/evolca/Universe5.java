@@ -8,21 +8,11 @@ import java.io.*;
  * Cell next state depends only from its previous state and 4 neighbors.
  */
 public class Universe5 extends Universe{
-    private char[][] initialCells;
-    private char[][] currentCells;
-    private char[][] previousCells;
     private char[][][][][] matrix;
-    private char numberOfStates;
-    private boolean isCircular = false;
-    final public static char OUT_VALUE = 0;
 
     public Universe5(char[][] initialCells, char[][][][][] matrix, char numberOfStates, boolean isCircular){
-        this.currentCells = ArrayUtils.copy2DArray(initialCells);
-        this.previousCells = ArrayUtils.copy2DArray(initialCells);
-        this.initialCells = ArrayUtils.copy2DArray(initialCells);
+        super(initialCells, numberOfStates, isCircular);
         this.matrix = ArrayUtils.copy5DArray(matrix);
-        this.numberOfStates = numberOfStates;
-        this.isCircular = isCircular;
     }
 
     @Override
@@ -57,68 +47,5 @@ public class Universe5 extends Universe{
                 currentCells[i][j] = matrix[a0][a1][a2][a3][a4];
             }
         }
-    }
-
-    @Override
-    public char[][] getCells() {
-        return ArrayUtils.copy2DArray(currentCells);
-    }
-
-    @Override
-    public char getValue(int i, int j) {
-        return currentCells[i][j];
-    }
-
-    @Override
-    public int getWidth() {
-        return currentCells.length;
-    }
-
-    @Override
-    public int getHeight() {
-        if(currentCells.length < 1){
-            return 0;
-        }
-        return currentCells[0].length;
-    }
-
-    @Override
-    public boolean isCircular() {
-        return isCircular;
-    }
-
-    @Override
-    public char getNumberOfStates() {
-        return numberOfStates;
-    }
-
-    @Override
-    public void resetToInitialState() {
-        this.currentCells = ArrayUtils.copy2DArray(initialCells);
-        this.previousCells = ArrayUtils.copy2DArray(initialCells);
-        this.setAge(0);
-    }
-
-    @Override
-    public void loadFromFile(File file) throws IOException, ClassNotFoundException {
-        FileInputStream fin = new FileInputStream(file);
-        ObjectInputStream ois = new ObjectInputStream(fin);
-        Universe5 loadedUniverse = (Universe5) ois.readObject();
-        ois.close();
-        this.setAge(loadedUniverse.getAge());
-        this.currentCells = loadedUniverse.currentCells;
-        this.previousCells = loadedUniverse.previousCells;
-        this.initialCells = loadedUniverse.initialCells;
-        this.matrix = loadedUniverse.matrix;
-        this.numberOfStates = loadedUniverse.numberOfStates;
-        this.isCircular = loadedUniverse.isCircular;
-    }
-
-    @Override
-    public void saveToFile(File file) throws IOException {
-        FileOutputStream fout = new FileOutputStream(file);
-        ObjectOutputStream oos = new ObjectOutputStream(fout);
-        oos.writeObject(this);
-        oos.close();
     }
 }
