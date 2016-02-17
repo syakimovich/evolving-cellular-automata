@@ -48,7 +48,7 @@ public class UniversePanel extends JPanel{
 		super.paint(g);
 		Image img = createImage();
 		g.drawImage(img, 0, 0, universe.getWidth() * zoom,
-                universe.getHeight() * zoom, Color.ORANGE,  this);
+                universe.getHeight() * zoom,  this);
 	}
 	
 	private Image createImage(){
