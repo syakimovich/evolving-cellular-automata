@@ -3,6 +3,7 @@ package org.yakimovich.evolca.utils;
 import org.jenetics.CharacterChromosome;
 import org.jenetics.CharacterGene;
 import org.jenetics.Genotype;
+import org.jenetics.IntegerChromosome;
 import org.yakimovich.evolca.Universe5;
 
 public class JeneticsUtils {
@@ -11,6 +12,16 @@ public class JeneticsUtils {
         for(int i = 0; i < size1; i++) {
             for (int j = 0; j < size2; j++) {
                 result[i][j] = ch.getGene(i * size2 + j).charValue();
+            }
+        }
+        return result;
+    }
+
+    public static int[][] chromosomeTo2DArray(IntegerChromosome ch, int size1, int size2){
+        int[][] result = new int[size1][size2];
+        for(int i = 0; i < size1; i++) {
+            for (int j = 0; j < size2; j++) {
+                result[i][j] = ch.getGene(i * size2 + j).intValue();
             }
         }
         return result;

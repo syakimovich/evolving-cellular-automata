@@ -29,7 +29,7 @@ public class ExampleWithCmdParams {
         for(int i = 0; i < 10; i++){
             char[][] initialCells = ArrayUtils.createRandom2DCharArray(size, size, numberOfStates);
             int[][] thresholds = ArrayUtils.createRandom2DIntArray(numberOfStates, numberOfStates - 1,
-                    numberOfStates * numberOfNeighbors);
+                    (numberOfStates - 1) * numberOfNeighbors);
             Universe u = new UniverseSum(initialCells, numberOfNeighbors, thresholds, numberOfStates, isCircular);
             universes.add(u);
         }

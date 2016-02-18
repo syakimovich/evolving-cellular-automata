@@ -20,6 +20,16 @@ public class ArrayUtils{
         return result;
     }
 
+    public static char[][] intArrayToCharArray(int[][] intArray){
+        char[][] result = new char[intArray.length][intArray[0].length];
+        for(int i = 0; i < intArray.length; i++) {
+            for (int j = 0; j < intArray[0].length; j++) {
+                result[i][j] = (char) intArray[i][j];
+            }
+        }
+        return result;
+    }
+
     public static int difference2D(char[][] first, char[][] second){
         int result = 0;
         for(int i = 0; i < first.length; i++){
