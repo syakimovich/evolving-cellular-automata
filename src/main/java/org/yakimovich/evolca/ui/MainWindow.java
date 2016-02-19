@@ -213,7 +213,7 @@ public class MainWindow extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JFileChooser c = new JFileChooser();
-                    int rVal = c.showSaveDialog(MainWindow.this);
+                    int rVal = c.showOpenDialog(MainWindow.this);
                     if (rVal == JFileChooser.APPROVE_OPTION) {
                         try {
                             upi.setUniverse(Universe.loadFromFile(c.getSelectedFile()));
