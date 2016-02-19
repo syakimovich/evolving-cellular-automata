@@ -167,6 +167,7 @@ public class MainWindow extends JFrame {
         private JMenuItem saveUniverseInitialState;
         private JMenuItem loadUniverseInitialState;
         private JMenuItem saveUniverseCurrentState;
+        private JMenuItem exportToGif;
 
         public UniversePopupMenu(final UniversePanelWithInfo upi){
             oneStep = new JMenuItem("Do one step");
@@ -198,7 +199,6 @@ public class MainWindow extends JFrame {
                     if (rVal == JFileChooser.APPROVE_OPTION) {
                         try {
                             Universe.saveToFile(upi.getUniverse(), c.getSelectedFile());
-                            JOptionPane.showMessageDialog(null, "The universe is successfully saved to file.");
                         } catch (IOException e1) {
                             JOptionPane.showMessageDialog(null, "The universe is not saved. Error: " + e1);
                         }
@@ -217,7 +217,6 @@ public class MainWindow extends JFrame {
                     if (rVal == JFileChooser.APPROVE_OPTION) {
                         try {
                             upi.setUniverse(Universe.loadFromFile(c.getSelectedFile()));
-                            JOptionPane.showMessageDialog(null, "The universe is successfully loaded from file.");
                         } catch (IOException e1) {
                             JOptionPane.showMessageDialog(null, "The universe is not loaded. Error: " + e1);
                         } catch (ClassNotFoundException e1) {
@@ -229,6 +228,16 @@ public class MainWindow extends JFrame {
                 }
             });
             add(loadUniverseInitialState);
+
+            exportToGif = new JMenuItem("Export to GIF");
+            exportToGif.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ExportToGifDialog dialog = new ExportToGifDialog(upi.getUniverse());
+                    dialog.setVisible(true);
+                }
+            });
+            add(exportToGif);
         }
     }
 

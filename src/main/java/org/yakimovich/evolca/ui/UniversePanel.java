@@ -1,6 +1,7 @@
 package org.yakimovich.evolca.ui;
 
 import org.yakimovich.evolca.Universe;
+import org.yakimovich.evolca.utils.GraphicsUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,31 +47,10 @@ public class UniversePanel extends JPanel{
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		Image img = createImage();
+		Image img = GraphicsUtils.createImage(universe, zoom);
 		g.drawImage(img, 0, 0, universe.getWidth() * zoom,
                 universe.getHeight() * zoom,  this);
 	}
 	
-	private Image createImage(){
-		BufferedImage img = new BufferedImage(universe.getWidth() * zoom, 
-				universe.getHeight() * zoom, BufferedImage.TYPE_INT_RGB);
-		
-		WritableRaster wr = img.getRaster();
-		int[] pArray = new int[universe.getWidth() * universe.getHeight() * 3 * zoom * zoom];
-		for(int i = 0; i < universe.getHeight(); i++){
-			for(int j = 0; j < universe.getWidth(); j++){
-				Color color = Colors.getColor(universe.getValue(i, j));
-				for(int n = 0; n < zoom; n++){
-					for(int m = 0; m < zoom; m++){
-						pArray[(universe.getWidth() * zoom * (i * zoom + n) + (j * zoom + m)) * 3] = color.getRed();
-						pArray[(universe.getWidth() * zoom * (i * zoom + n) + (j * zoom + m)) * 3 + 1] = color.getGreen();
-						pArray[(universe.getWidth() * zoom * (i * zoom + n) + (j * zoom + m)) * 3 + 2] = color.getBlue();
-					}
-				}
-			}
-		}
-		wr.setPixels(0, 0, universe.getWidth() * zoom, 
-				universe.getHeight() * zoom, pArray);
-		return img;
-	}
+
 }
