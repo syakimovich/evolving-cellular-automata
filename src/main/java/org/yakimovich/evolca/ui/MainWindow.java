@@ -25,7 +25,7 @@ public class MainWindow extends JFrame {
     private int numberOfRows = 2;
     private long sleepTimeInMilliseconds = 500;
     private List<UniversePanelWithInfo> universePanels;
-    private List<Measure> measures;
+    private List<Measure> measures = new ArrayList<Measure>();
     private boolean tickAll = false;
     private JPanel universesPanel = new JPanel();
     private JPanel controlsPanel = new JPanel();
@@ -38,10 +38,10 @@ public class MainWindow extends JFrame {
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         setVisible(true);
         startLoop();
+    }
 
-        measures = new ArrayList<Measure>();
-        measures.add(new AvgNeighborColourIndex5());
-        measures.add(new NonZeroPercentage());
+    public void addMeasure(Measure m){
+        measures.add(m);
     }
 
     public void setUniverses(List<Universe> universes){

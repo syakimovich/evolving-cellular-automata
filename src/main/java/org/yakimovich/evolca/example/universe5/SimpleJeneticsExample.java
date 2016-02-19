@@ -7,6 +7,7 @@ import org.jenetics.util.Factory;
 import org.yakimovich.evolca.Universe;
 import org.yakimovich.evolca.Universe5;
 import org.yakimovich.evolca.measures.AvgNeighborColourIndex5;
+import org.yakimovich.evolca.measures.Gini;
 import org.yakimovich.evolca.measures.NonZeroPercentage;
 import org.yakimovich.evolca.ui.MainWindow;
 import org.yakimovich.evolca.utils.JeneticsUtils;
@@ -81,6 +82,9 @@ public class SimpleJeneticsExample {
 
         double avgFitness = fitnessSum / (double) evolutions;
         MainWindow mainWindow = new MainWindow("Simple Jenetics example");
+        mainWindow.addMeasure(new NonZeroPercentage());
+        mainWindow.addMeasure(new AvgNeighborColourIndex5());
+        mainWindow.addMeasure(new Gini());
         mainWindow.setSleepTimeInMilliseconds(100);
         mainWindow.setUniverses(universes);
 

@@ -2,6 +2,9 @@ package org.yakimovich.evolca.example.universe5;
 
 import org.yakimovich.evolca.Universe;
 import org.yakimovich.evolca.Universe5;
+import org.yakimovich.evolca.measures.AvgNeighborColourIndex5;
+import org.yakimovich.evolca.measures.Gini;
+import org.yakimovich.evolca.measures.NonZeroPercentage;
 import org.yakimovich.evolca.ui.MainWindow;
 import org.yakimovich.evolca.utils.ArrayUtils;
 import org.yakimovich.evolca.utils.CellsArrayGenerator;
@@ -30,6 +33,9 @@ public class Random8StatesFromPoint {
         }
 
         MainWindow mainWindow = new MainWindow("Simple random example");
+        mainWindow.addMeasure(new NonZeroPercentage());
+        mainWindow.addMeasure(new AvgNeighborColourIndex5());
+        mainWindow.addMeasure(new Gini());
         mainWindow.setSleepTimeInMilliseconds(100);
         mainWindow.setUniverses(universes);
 
