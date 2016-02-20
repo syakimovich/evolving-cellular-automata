@@ -16,6 +16,11 @@ public class Universe5 extends Universe{
     }
 
     @Override
+    public Universe copy() {
+        return new Universe5(initialCells, matrix, numberOfStates, isCircular);
+    }
+
+    @Override
     public void doTick(){
         char[][] prevCellsRef = previousCells;
         previousCells = currentCells;

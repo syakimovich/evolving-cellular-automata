@@ -36,8 +36,8 @@ public class AvgNeighborColourIndex5 implements Measure {
 
 
         char[][] cells = u.getCells();
-        for(int i = 0; i < u.getWidth(); i++){
-            for(int j = 0; j < u.getHeight(); j++){
+        for(int i = 0; i < u.getHeight(); i++){
+            for(int j = 0; j < u.getWidth(); j++){
                 int p = i;
                 int q = j;
                 int a0 = ArrayUtils.getSafeValue2D(p, q, cells, u.isCircular(), OUT_VALUE);

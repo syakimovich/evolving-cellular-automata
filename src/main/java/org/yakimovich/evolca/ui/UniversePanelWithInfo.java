@@ -16,8 +16,8 @@ public class UniversePanelWithInfo extends JPanel{
     private List<Measure> measures = new ArrayList<Measure>();
     private NumberFormat doubleFormatter = new DecimalFormat("######.00");
 	
-	public UniversePanelWithInfo(Universe universe, int zoom){
-        universePanel = new UniversePanel(universe, zoom);
+	public UniversePanelWithInfo(Universe universe, int zoom, boolean isFullScreen){
+        universePanel = new UniversePanel(universe, zoom, isFullScreen);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(this.universePanel);
         label = new JLabel("initial text");

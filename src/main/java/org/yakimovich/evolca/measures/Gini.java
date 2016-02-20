@@ -19,8 +19,8 @@ public class Gini implements Measure {
         }
 
         char[][] cells = u.getCells();
-        for(int i = 0; i < u.getWidth(); i++) {
-            for (int j = 0; j < u.getHeight(); j++) {
+        for(int i = 0; i < u.getHeight(); i++) {
+            for (int j = 0; j < u.getWidth(); j++) {
                 numberArray[cells[i][j]]++;
             }
         }

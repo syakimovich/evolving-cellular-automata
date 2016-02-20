@@ -58,8 +58,9 @@ public class MainWindow extends JFrame {
             for(int j = 0; j < numberOfRows; j++){
 
                 if(universesIterator.hasNext()){
-                    final UniversePanelWithInfo upi = new UniversePanelWithInfo(universesIterator.next(), 2);
+                    final UniversePanelWithInfo upi = new UniversePanelWithInfo(universesIterator.next(), 2, false);
                     upi.setMeasures(measures);
+                    /*
                     upi.addMouseListener(new MouseAdapter(){
                         public void mousePressed(MouseEvent e){
                             if (e.isPopupTrigger())
@@ -75,7 +76,9 @@ public class MainWindow extends JFrame {
                             UniversePopupMenu menu = new UniversePopupMenu(upi);
                             menu.show(e.getComponent(), e.getX(), e.getY());
                         }
-                    });
+
+                        });
+                        */
                     universePanels.add(upi);
                     universesPanel.add(upi);
                 }
@@ -168,6 +171,7 @@ public class MainWindow extends JFrame {
         private JMenuItem loadUniverseInitialState;
         private JMenuItem saveUniverseCurrentState;
         private JMenuItem exportToGif;
+        private JMenuItem fullScreen;
 
         public UniversePopupMenu(final UniversePanelWithInfo upi){
             oneStep = new JMenuItem("Do one step");
@@ -238,6 +242,16 @@ public class MainWindow extends JFrame {
                 }
             });
             add(exportToGif);
+
+            fullScreen = new JMenuItem("Full screen");
+            fullScreen.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    FullScreenFrame fullScreenFrame = new FullScreenFrame(upi.getUniverse());
+                    fullScreenFrame.setVisible(true);
+                }
+            });
+            add(fullScreen);
         }
     }
 

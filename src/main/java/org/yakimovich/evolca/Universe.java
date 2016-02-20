@@ -26,6 +26,8 @@ public abstract class Universe implements Serializable {
         this.isCircular = isCircular;
     }
 
+    public abstract Universe copy();
+
     public abstract void doTick();
 
     public void tick(){
@@ -51,19 +53,25 @@ public abstract class Universe implements Serializable {
         return ArrayUtils.copy2DArray(currentCells);
     }
 
+    public void setCells(char[][] newCells){
+        this.currentCells = ArrayUtils.copy2DArray(newCells);
+        this.previousCells = ArrayUtils.copy2DArray(newCells);
+        this.initialCells = ArrayUtils.copy2DArray(newCells);
+    }
+
     public char getValue(int i, int j) {
         return currentCells[i][j];
     }
 
     public int getWidth() {
-        return currentCells.length;
-    }
-
-    public int getHeight() {
         if(currentCells.length < 1){
             return 0;
         }
         return currentCells[0].length;
+    }
+
+    public int getHeight() {
+        return currentCells.length;
     }
 
     public boolean isCircular() {

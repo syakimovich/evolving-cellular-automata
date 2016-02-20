@@ -14,8 +14,8 @@ public class NonZeroPercentage implements Measure {
     @Override
     public double getValue(Universe u) {
         int nonZero = 0;
-        for(int i = 0; i < u.getWidth(); i++) {
-            for (int j = 0; j < u.getHeight(); j++) {
+        for(int i = 0; i < u.getHeight(); i++) {
+            for (int j = 0; j < u.getWidth(); j++) {
                 if (u.getValue(i, j) != 0) {
                     nonZero++;
                 }

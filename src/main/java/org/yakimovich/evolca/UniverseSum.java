@@ -13,6 +13,12 @@ public class UniverseSum extends Universe{
         this.thresholds = ArrayUtils.copy2DArray(thresholds);
     }
 
+
+    @Override
+    public Universe copy() {
+        return new UniverseSum(initialCells, numberOfNeighbors, thresholds, numberOfStates, isCircular);
+    }
+
     @Override
     public void doTick(){
         char[][] prevCellsRef = previousCells;
