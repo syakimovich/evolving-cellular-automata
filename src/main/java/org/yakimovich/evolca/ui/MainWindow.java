@@ -60,25 +60,6 @@ public class MainWindow extends JFrame {
                 if(universesIterator.hasNext()){
                     final UniversePanelWithInfo upi = new UniversePanelWithInfo(universesIterator.next(), 2, false);
                     upi.setMeasures(measures);
-                    /*
-                    upi.addMouseListener(new MouseAdapter(){
-                        public void mousePressed(MouseEvent e){
-                            if (e.isPopupTrigger())
-                                doPop(e);
-                        }
-
-                        public void mouseReleased(MouseEvent e){
-                            if (e.isPopupTrigger())
-                                doPop(e);
-                        }
-
-                        private void doPop(MouseEvent e){
-                            UniversePopupMenu menu = new UniversePopupMenu(upi);
-                            menu.show(e.getComponent(), e.getX(), e.getY());
-                        }
-
-                        });
-                        */
                     universePanels.add(upi);
                     universesPanel.add(upi);
                 }
@@ -88,7 +69,7 @@ public class MainWindow extends JFrame {
         startAllButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                tickAll = true;
+                startAll();
             }
         });
 
@@ -96,7 +77,7 @@ public class MainWindow extends JFrame {
         stopAllButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                tickAll = false;
+                stopAll();
             }
         });
         int universePanelWidth = universePanels.get(0).getWidth();
@@ -112,6 +93,14 @@ public class MainWindow extends JFrame {
         contentPane.add(universesPanel);
         contentPane.add(controlsPanel);
         repaint();
+    }
+
+    public void startAll(){
+        tickAll = true;
+    }
+
+    public void stopAll(){
+        tickAll = false;
     }
 
     private void startLoop(){
@@ -163,96 +152,6 @@ public class MainWindow extends JFrame {
 
     public void setTickAll(boolean tickAll) {
         this.tickAll = tickAll;
-    }
-
-    private class UniversePopupMenu extends JPopupMenu{
-        private JMenuItem oneStep;
-        private JMenuItem saveUniverseInitialState;
-        private JMenuItem loadUniverseInitialState;
-        private JMenuItem saveUniverseCurrentState;
-        private JMenuItem exportToGif;
-        private JMenuItem fullScreen;
-
-        public UniversePopupMenu(final UniversePanelWithInfo upi){
-            oneStep = new JMenuItem("Do one step");
-            oneStep.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    upi.getUniverse().tick();
-                    upi.repaint();
-                }
-            });
-            add(oneStep);
-
-            saveUniverseInitialState = new JMenuItem("Reset to initial state");
-            saveUniverseInitialState.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    upi.getUniverse().resetToInitialState();
-                    upi.repaint();
-                }
-            });
-            add(saveUniverseInitialState);
-
-            saveUniverseCurrentState = new JMenuItem("Save the universe");
-            saveUniverseCurrentState.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JFileChooser c = new JFileChooser();
-                    int rVal = c.showSaveDialog(MainWindow.this);
-                    if (rVal == JFileChooser.APPROVE_OPTION) {
-                        try {
-                            Universe.saveToFile(upi.getUniverse(), c.getSelectedFile());
-                        } catch (IOException e1) {
-                            JOptionPane.showMessageDialog(null, "The universe is not saved. Error: " + e1);
-                        }
-                    }
-                    upi.repaint();
-                }
-            });
-            add(saveUniverseCurrentState);
-
-            loadUniverseInitialState = new JMenuItem("Load universe");
-            loadUniverseInitialState.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JFileChooser c = new JFileChooser();
-                    int rVal = c.showOpenDialog(MainWindow.this);
-                    if (rVal == JFileChooser.APPROVE_OPTION) {
-                        try {
-                            upi.setUniverse(Universe.loadFromFile(c.getSelectedFile()));
-                        } catch (IOException e1) {
-                            JOptionPane.showMessageDialog(null, "The universe is not loaded. Error: " + e1);
-                        } catch (ClassNotFoundException e1) {
-                            JOptionPane.showMessageDialog(null, "The universe is not loaded. Error: " + e1);
-                        }
-
-                    }
-                    upi.repaint();
-                }
-            });
-            add(loadUniverseInitialState);
-
-            exportToGif = new JMenuItem("Export to GIF");
-            exportToGif.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ExportToGifDialog dialog = new ExportToGifDialog(upi.getUniverse());
-                    dialog.setVisible(true);
-                }
-            });
-            add(exportToGif);
-
-            fullScreen = new JMenuItem("Full screen");
-            fullScreen.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    FullScreenFrame fullScreenFrame = new FullScreenFrame(upi.getUniverse());
-                    fullScreenFrame.setVisible(true);
-                }
-            });
-            add(fullScreen);
-        }
     }
 
     public long getSleepTimeInMilliseconds() {

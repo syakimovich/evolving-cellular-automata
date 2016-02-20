@@ -81,6 +81,8 @@ public class UniversePanel extends JPanel{
 	}
 
 	private class UniversePopupMenu extends JPopupMenu{
+        private JMenuItem startAll;
+        private JMenuItem stopAll;
 		private JMenuItem oneStep;
 		private JMenuItem saveUniverseInitialState;
 		private JMenuItem loadUniverseInitialState;
@@ -90,6 +92,48 @@ public class UniversePanel extends JPanel{
         private JMenuItem closeFullScreen;
 
 		public UniversePopupMenu(){
+            if(UniversePanel.this.isFullScreen()){
+                startAll = new JMenuItem("Start");
+                startAll.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        FullScreenFrame topFrame = (FullScreenFrame) SwingUtilities.getWindowAncestor(UniversePanel.this);
+                        topFrame.start();
+                    }
+                });
+                add(startAll);
+
+                stopAll = new JMenuItem("Stop");
+                stopAll.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        FullScreenFrame topFrame = (FullScreenFrame) SwingUtilities.getWindowAncestor(UniversePanel.this);
+                        topFrame.stop();
+                    }
+                });
+                add(stopAll);
+            } else {
+                startAll = new JMenuItem("Start all");
+                startAll.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        MainWindow topFrame = (MainWindow) SwingUtilities.getWindowAncestor(UniversePanel.this);
+                        topFrame.startAll();
+                    }
+                });
+                add(startAll);
+
+                stopAll = new JMenuItem("Stop all");
+                stopAll.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        MainWindow topFrame = (MainWindow) SwingUtilities.getWindowAncestor(UniversePanel.this);
+                        topFrame.stopAll();
+                    }
+                });
+                add(stopAll);
+            }
+
 			oneStep = new JMenuItem("Do one step");
 			oneStep.addActionListener(new ActionListener(){
 				@Override
