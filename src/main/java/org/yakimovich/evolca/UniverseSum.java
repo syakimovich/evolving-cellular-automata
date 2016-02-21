@@ -4,19 +4,36 @@ import org.yakimovich.evolca.utils.ArrayUtils;
 
 public class UniverseSum extends Universe{
     private int[][] thresholds;
+    private char[][] resultStates;
     private int numberOfNeighbors;
 
     public UniverseSum(char[][] initialCells, int numberOfNeighbors,
-                       int[][] thresholds, char numberOfStates, boolean isCircular){
+                       int[][] thresholds, char[][] resultStates, char numberOfStates, boolean isCircular){
         super(initialCells, numberOfStates, isCircular);
         this.numberOfNeighbors = numberOfNeighbors;
         this.thresholds = ArrayUtils.copy2DArray(thresholds);
+        this.resultStates = ArrayUtils.copy2DArray(resultStates);
     }
 
+    public UniverseSum(char[][] initialCells, int numberOfNeighbors,
+                       int[][] thresholds, char numberOfStates, boolean isCircular){
+        this(initialCells, numberOfNeighbors, thresholds,
+                getDefaultResultStates(thresholds), numberOfStates, isCircular);
+    }
+
+    private static char[][] getDefaultResultStates(int[][] thresholds){
+        char[][] defaultResultStates = new char[thresholds.length][thresholds[0].length + 1];
+        for(int i = 0; i < defaultResultStates.length; i++){
+            for(int j = 0; j < defaultResultStates[0].length; j++){
+                defaultResultStates[i][j] = (char) j;
+            }
+        }
+        return defaultResultStates;
+    }
 
     @Override
     public Universe copy() {
-        return new UniverseSum(initialCells, numberOfNeighbors, thresholds, numberOfStates, isCircular);
+        return new UniverseSum(initialCells, numberOfNeighbors, thresholds, resultStates, numberOfStates, isCircular);
     }
 
     @Override
@@ -114,7 +131,7 @@ public class UniverseSum extends Universe{
                     }
                 }
 
-                currentCells[i][j] = value;
+                currentCells[i][j] = resultStates[a0][value];
             }
         }
     }
