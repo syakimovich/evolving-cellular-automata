@@ -33,7 +33,7 @@ public class ExampleWithCmdParams {
             int[][] thresholds = ArrayUtils.createRandom2DIntArray(numberOfStates, numberOfStates - 1,
                     (numberOfStates - 1) * numberOfNeighbors);
             char[][] resultStates = ArrayUtils.createRandom2DCharArray(numberOfStates,numberOfStates, numberOfStates);
-            Universe u = new UniverseSum(initialCells, numberOfNeighbors, thresholds, numberOfStates, isCircular);
+            Universe u = new UniverseSum(initialCells, numberOfNeighbors, thresholds, resultStates, numberOfStates, isCircular);
             universes.add(u);
         }
 
