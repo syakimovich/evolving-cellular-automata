@@ -157,4 +157,20 @@ public class ArrayUtils{
         }
         return result;
     }
+
+    public static char[][] replaceWithZeros(char[][] array, double probability){
+        Random rand = new Random();
+        char[][] result = new char[array.length][];
+        for(int i = 0; i < array.length; i++){
+            result[i] = new char[array[i].length];
+            for(int j = 0; j < array[i].length; j++){
+                if(rand.nextDouble() < probability){
+                    result[i][j] = 0;
+                } else {
+                    result[i][j] = array[i][j];
+                }
+            }
+        }
+        return result;
+    }
 }
