@@ -32,13 +32,11 @@ public class FilterOutBad {
 
         final boolean isCircular = true;
 
-
-
-
         List<Universe> universes = new ArrayList<Universe>();
 
         int goodUniverses = 0;
 search: while(goodUniverses < 10){
+            System.out.println("Searching for new universe, " + goodUniverses + " already found");
             char[][] initialCells = ArrayUtils.createRandom2DCharArray(size, size, numberOfStates);
             initialCells = ArrayUtils.replaceWithZeros(initialCells, initialStateToZeroProbability);
 
@@ -55,40 +53,58 @@ search: while(goodUniverses < 10){
             Gini gini = new Gini();
             AvgNeighborColourIndex5 anci = new AvgNeighborColourIndex5();
 
-            u.tick(100);
-            double nzp1 = nzp.getValue(u);
-            double nzp2;
+
 
             for(int i = 0; i < 5; i++) {
                 u.tick(20);
                 char[][] c1 = u.getCells();
+                int age1 = u.getAge();
                 char[][] c2;
                 for (int j = 0; j < 10; j++) {
                     u.tick();
                     c2 = u.getCells();
-                    if (ArrayUtils.difference2D(c1, c2) < 5) {
+                    if (ArrayUtils.difference2D(c1, c2) == 0) {
+                        System.out.println("repeated state between ages " + age1 + " and " + u.getAge() + ", skipped");
                         continue search;
                     }
                 }
-                nzp2 = nzp.getValue(u);
 
+            }
+
+
+            for(int i = 0; i < 5; i++) {
+                double nzp1 = nzp.getValue(u);
+                u.tick(20);
+                double nzp2 = nzp.getValue(u);
                 if (nzp2 < 0.5) {
+                    System.out.println("Non zero percentage = " + nzp2 + " below 0.5, skipped");
                     continue search;
                 }
 
                 if (nzp2 >= 0.999) {
+                    System.out.println("Non zero percentage = " + nzp2 + " more than 0.999, skipped");
                     continue search;
                 }
 
-                if (Math.abs(nzp1 - nzp2) > 0.3) {
+                if (Math.abs(nzp2 - nzp1) > 0.3) {
+                    System.out.println("Non zero percentage change = " + (nzp2 - nzp1) + " more than 0.3, skipped");
                     continue search;
+                }
+                char[][] c1 = u.getCells();
+                int age1 = u.getAge();
+                char[][] c2;
+                for (int j = 0; j < 10; j++) {
+                    u.tick();
+                    c2 = u.getCells();
+                    if (ArrayUtils.difference2D(c1, c2) == 0) {
+                        System.out.println("repeated state between ages " + age1 + " and " + u.getAge() + ", skipped");
+                        continue search;
+                    }
                 }
 
             }
 
             goodUniverses++;
-
-            System.out.print(goodUniverses + " ");
 
             u.resetToInitialState();
             universes.add(u);
