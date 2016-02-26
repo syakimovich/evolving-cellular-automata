@@ -30,7 +30,7 @@ public class ExampleWithCmdParamsFromPoint {
 
         List<Universe> universes = new ArrayList<Universe>();
         for(int i = 0; i < 10; i++){
-            char[][] initialCells = InitialStateGenerator.create1Point(size, size);
+            char[][] initialCells = InitialStateGenerator.create1Point(size, size, (char)1);
             int[][] thresholds = ArrayUtils.createRandom2DIntArray(numberOfStates, numberOfStates - 1,
                     (numberOfStates - 1) * numberOfNeighbors);
             char[][] resultStates = ArrayUtils.createRandom2DCharArray(numberOfStates,numberOfStates, numberOfStates);

@@ -7,6 +7,7 @@ import org.yakimovich.evolca.measures.Gini;
 import org.yakimovich.evolca.measures.NonZeroPercentage;
 import org.yakimovich.evolca.ui.MainWindow;
 import org.yakimovich.evolca.utils.ArrayUtils;
+import org.yakimovich.evolca.utils.InitialStateGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Random4States {
 
         List<Universe> universes = new ArrayList<Universe>();
         for(int i = 0; i < 10; i++){
-            char[][] initialCells = ArrayUtils.createRandom2DCharArray(size, size, numberOfStates);
+            char[][] initialCells = InitialStateGenerator.createRandom(size, size, numberOfStates);
             char[][][][][] matrix = ArrayUtils.createRandomMatrix5D(thresholds);
             Universe u = new Universe5(initialCells, matrix, numberOfStates, isCircular);
             universes.add(u);

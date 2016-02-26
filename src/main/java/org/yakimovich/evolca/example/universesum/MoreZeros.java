@@ -6,6 +6,7 @@ import org.yakimovich.evolca.measures.AvgNeighborColorIndex5;
 import org.yakimovich.evolca.measures.Gini;
 import org.yakimovich.evolca.ui.MainWindow;
 import org.yakimovich.evolca.utils.ArrayUtils;
+import org.yakimovich.evolca.utils.InitialStateGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class MoreZeros {
 
         List<Universe> universes = new ArrayList<Universe>();
         for(int i = 0; i < 10; i++){
-            char[][] initialCells = ArrayUtils.createRandom2DCharArray(size, size, numberOfStates);
+            char[][] initialCells = InitialStateGenerator.createRandom(size, size, numberOfStates);
             initialCells = ArrayUtils.replaceWithZeros(initialCells, initialStateToZeroProbability);
 
             int[][] thresholds = ArrayUtils.createRandom2DIntArray(numberOfStates, numberOfStates - 1,

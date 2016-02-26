@@ -1,6 +1,10 @@
 package org.yakimovich.evolca.utils;
 
 public class InitialStateGenerator {
+    public static char[][] createRandom(int n, int m, char numberOfStates){
+        return ArrayUtils.createRandom2DCharArray(n, m, numberOfStates);
+    }
+
     public static char[][] create3ColorsRectangular(int width, int height){
         char[][] result = new char[height][width];
         for(int i = 0; i < height; i++){
@@ -19,14 +23,14 @@ public class InitialStateGenerator {
         return result;
     }
 
-    public static char[][] create1Point(int width, int height){
+    public static char[][] create1Point(int width, int height, char pointState){
         char[][] result = new char[height][width];
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
                 result[i][j] = 0;
             }
         }
-        result[height / 2][width / 2] = 1;
+        result[height / 2][width / 2] = pointState;
         return result;
     }
 }

@@ -28,7 +28,7 @@ public class Random4StatesFromPoint {
 
         List<Universe> universes = new ArrayList<Universe>();
         for(int i = 0; i < 10; i++){
-            char[][] initialCells = InitialStateGenerator.create1Point(size, size);
+            char[][] initialCells = InitialStateGenerator.create1Point(size, size, (char)1);
             char[][][][][] matrix = ArrayUtils.createRandomMatrix5D(thresholds4);
             matrix[0][0][0][0][0] = 0;
             Universe u = new Universe5(initialCells, matrix, numberOfStates, isCircular);
