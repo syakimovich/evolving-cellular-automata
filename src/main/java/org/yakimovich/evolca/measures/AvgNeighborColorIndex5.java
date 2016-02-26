@@ -7,7 +7,7 @@ import org.yakimovich.evolca.utils.ArrayUtils;
 /**
  * How different are average neighbors for different states. For each state there are only 4 neighbors;
  */
-public class AvgNeighborColourIndex5 implements Measure {
+public class AvgNeighborColorIndex5 implements Measure {
 
     final public char OUT_VALUE = 0;
     final public double ZERO_AVOID = 0.000000001;

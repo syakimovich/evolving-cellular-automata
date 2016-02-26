@@ -2,16 +2,11 @@ package org.yakimovich.evolca.ui;
 
 import org.yakimovich.evolca.Measure;
 import org.yakimovich.evolca.Universe;
-import org.yakimovich.evolca.measures.AvgNeighborColourIndex5;
-import org.yakimovich.evolca.measures.NonZeroPercentage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
