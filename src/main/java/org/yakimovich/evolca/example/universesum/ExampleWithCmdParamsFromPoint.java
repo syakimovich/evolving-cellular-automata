@@ -6,7 +6,7 @@ import org.yakimovich.evolca.measures.AvgNeighborColorIndex5;
 import org.yakimovich.evolca.measures.Gini;
 import org.yakimovich.evolca.ui.MainWindow;
 import org.yakimovich.evolca.utils.ArrayUtils;
-import org.yakimovich.evolca.utils.CellsArrayGenerator;
+import org.yakimovich.evolca.utils.InitialStateGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class ExampleWithCmdParamsFromPoint {
 
         List<Universe> universes = new ArrayList<Universe>();
         for(int i = 0; i < 10; i++){
-            char[][] initialCells = CellsArrayGenerator.create1Point(size);
+            char[][] initialCells = InitialStateGenerator.create1Point(size, size);
             int[][] thresholds = ArrayUtils.createRandom2DIntArray(numberOfStates, numberOfStates - 1,
                     (numberOfStates - 1) * numberOfNeighbors);
             char[][] resultStates = ArrayUtils.createRandom2DCharArray(numberOfStates,numberOfStates, numberOfStates);
