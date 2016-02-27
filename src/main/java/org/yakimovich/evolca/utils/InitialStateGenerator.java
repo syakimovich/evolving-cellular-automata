@@ -1,8 +1,8 @@
 package org.yakimovich.evolca.utils;
 
 public class InitialStateGenerator {
-    public static char[][] createRandom(int n, int m, char numberOfStates){
-        return ArrayUtils.createRandom2DCharArray(n, m, numberOfStates);
+    public static char[][] createRandom(int width, int height, char numberOfStates){
+        return ArrayUtils.createRandom2DCharArray(height, width, numberOfStates);
     }
 
     public static char[][] create3ColorsRectangular(int width, int height){
