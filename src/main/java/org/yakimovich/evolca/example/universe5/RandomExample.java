@@ -14,7 +14,7 @@ import java.util.List;
 
 public class RandomExample {
     public static void main(String[] args) throws Exception {
-        char size = 100;
+        int size = 100;
         char numberOfStates = 4;
         double[] thresholds;
         double[] thresholds4 = {0.8, 0.9, 0.95};
