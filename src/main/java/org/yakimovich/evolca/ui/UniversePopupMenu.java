@@ -7,61 +7,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class UniversePopupMenu extends JPopupMenu{
-    private JMenuItem startAll;
-    private JMenuItem stopAll;
-    private JMenuItem oneStep;
-    private JMenuItem saveUniverseInitialState;
-    private JMenuItem loadUniverseInitialState;
-    private JMenuItem saveUniverseCurrentState;
-    private JMenuItem exportToGif;
-    private JMenuItem fullScreen;
-    private JMenuItem closeFullScreen;
-
+public class UniversePopupMenu extends JPopupMenu {
     public UniversePopupMenu(UniversePanel universePanel){
-        if(universePanel.isFullScreen()){
-            startAll = new JMenuItem("Start");
-            startAll.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    FullScreenFrame topFrame = (FullScreenFrame) SwingUtilities.getWindowAncestor(universePanel);
-                    topFrame.start();
-                }
-            });
-            add(startAll);
+        JMenuItem start = new JMenuItem("Start");
+        start.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                universePanel.start();
+            }
+        });
+        add(start);
 
-            stopAll = new JMenuItem("Stop");
-            stopAll.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    FullScreenFrame topFrame = (FullScreenFrame) SwingUtilities.getWindowAncestor(universePanel);
-                    topFrame.stop();
-                }
-            });
-            add(stopAll);
-        } else {
-            startAll = new JMenuItem("Start all");
-            startAll.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    MainWindow topFrame = (MainWindow) SwingUtilities.getWindowAncestor(universePanel);
-                    topFrame.startAll();
-                }
-            });
-            add(startAll);
+        JMenuItem stop = new JMenuItem("Stop");
+        stop.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                universePanel.stop();
+            }
+        });
+        add(stop);
 
-            stopAll = new JMenuItem("Stop all");
-            stopAll.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    MainWindow topFrame = (MainWindow) SwingUtilities.getWindowAncestor(universePanel);
-                    topFrame.stopAll();
-                }
-            });
-            add(stopAll);
-        }
-
-        oneStep = new JMenuItem("Do one step");
+        JMenuItem oneStep = new JMenuItem("Do one step");
         oneStep.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,18 +37,18 @@ public class UniversePopupMenu extends JPopupMenu{
         });
         add(oneStep);
 
-        saveUniverseInitialState = new JMenuItem("Reset to initial state");
-        saveUniverseInitialState.addActionListener(new ActionListener(){
+        JMenuItem resetToUniverseInitialState = new JMenuItem("Reset to initial state");
+        resetToUniverseInitialState.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 universePanel.getUniverse().resetToInitialState();
                 universePanel.repaint();
             }
         });
-        add(saveUniverseInitialState);
+        add(resetToUniverseInitialState);
 
-        saveUniverseCurrentState = new JMenuItem("Save the universe");
-        saveUniverseCurrentState.addActionListener(new ActionListener(){
+        JMenuItem saveUniverse = new JMenuItem("Save the universe");
+        saveUniverse.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser c = new JFileChooser();
@@ -97,10 +63,10 @@ public class UniversePopupMenu extends JPopupMenu{
                 universePanel.repaint();
             }
         });
-        add(saveUniverseCurrentState);
+        add(saveUniverse);
 
-        loadUniverseInitialState = new JMenuItem("Load universe");
-        loadUniverseInitialState.addActionListener(new ActionListener(){
+        JMenuItem loadUniverse = new JMenuItem("Load universe");
+        loadUniverse.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser c = new JFileChooser();
@@ -118,9 +84,9 @@ public class UniversePopupMenu extends JPopupMenu{
                 universePanel.repaint();
             }
         });
-        add(loadUniverseInitialState);
+        add(loadUniverse);
 
-        exportToGif = new JMenuItem("Export to GIF");
+        JMenuItem exportToGif = new JMenuItem("Export to GIF");
         exportToGif.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -129,30 +95,6 @@ public class UniversePopupMenu extends JPopupMenu{
             }
         });
         add(exportToGif);
-
-
-        if(universePanel.isFullScreen()){
-            closeFullScreen = new JMenuItem("Close full screen");
-            closeFullScreen.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(universePanel);
-                    topFrame.dispose();
-                }
-            });
-            add(closeFullScreen);
-        } else {
-            fullScreen = new JMenuItem("Full screen");
-            fullScreen.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    FullScreenFrame fullScreenFrame = new FullScreenFrame(universePanel.getUniverse());
-                    fullScreenFrame.setVisible(true);
-                }
-            });
-            add(fullScreen);
-        }
-
     }
-}
 
+}

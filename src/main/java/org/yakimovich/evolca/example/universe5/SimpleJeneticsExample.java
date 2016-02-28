@@ -9,7 +9,7 @@ import org.yakimovich.evolca.Universe5;
 import org.yakimovich.evolca.measures.AvgNeighborColorIndex5;
 import org.yakimovich.evolca.measures.Gini;
 import org.yakimovich.evolca.measures.NonZeroPercentage;
-import org.yakimovich.evolca.ui.MainWindow;
+import org.yakimovich.evolca.ui.UniversesWindow;
 import org.yakimovich.evolca.utils.JeneticsUtils;
 
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class SimpleJeneticsExample {
     public static void main(String[] args){
         long startTime = System.currentTimeMillis();
         final CharSeq chars = CharSeq.of((char)0, (char) (numberOfStates - 1));
-        List<Universe> universes = new ArrayList<Universe>();
+        Universe[] universes = new Universe[10];
 
         double fitnessSum = 0;
         for(int i = 0; i < evolutions; i++){
@@ -76,17 +76,14 @@ public class SimpleJeneticsExample {
             Phenotype<CharacterGene, Double> ph = engine.stream().limit(100).collect(toBestPhenotype());
             System.out.print((i + 1) + "/" + evolutions + " ");
             fitnessSum += ph.getFitness();
-            Universe u = genotypeToUniverse5(ph.getGenotype());
-            universes.add(u);
+            universes[i] = genotypeToUniverse5(ph.getGenotype());
         }
 
         double avgFitness = fitnessSum / (double) evolutions;
-        MainWindow mainWindow = new MainWindow("Simple Jenetics example");
-        mainWindow.addMeasure(new NonZeroPercentage());
+        UniversesWindow mainWindow = new UniversesWindow(universes, "Simple Jenetics example");
         mainWindow.addMeasure(new AvgNeighborColorIndex5());
         mainWindow.addMeasure(new Gini());
-        mainWindow.setSleepTimeInMilliseconds(100);
-        mainWindow.setUniverses(universes);
+        mainWindow.addMeasure(new NonZeroPercentage());
 
         long endTime = System.currentTimeMillis();
         long fullTime = endTime - startTime;

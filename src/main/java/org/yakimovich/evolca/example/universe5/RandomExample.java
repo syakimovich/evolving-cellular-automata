@@ -5,7 +5,7 @@ import org.yakimovich.evolca.Universe5;
 import org.yakimovich.evolca.measures.AvgNeighborColorIndex5;
 import org.yakimovich.evolca.measures.Gini;
 import org.yakimovich.evolca.measures.NonZeroPercentage;
-import org.yakimovich.evolca.ui.MainWindow;
+import org.yakimovich.evolca.ui.UniversesWindow;
 import org.yakimovich.evolca.utils.ArrayUtils;
 import org.yakimovich.evolca.utils.InitialStateGenerator;
 
@@ -38,7 +38,7 @@ public class RandomExample {
             throw new Exception("Number of states must be 4 or 8.");
         }
 
-        List<Universe> universes = new ArrayList<Universe>();
+        Universe[] universes = new Universe[10];
         for(int i = 0; i < 10; i++){
             char[][] initialCells = null;
             if(initialState.equalsIgnoreCase("point")){
@@ -50,15 +50,12 @@ public class RandomExample {
             }
 
             char[][][][][] matrix = ArrayUtils.createRandomMatrix5D(thresholds);
-            Universe u = new Universe5(initialCells, matrix, numberOfStates, isCircular);
-            universes.add(u);
+            universes[i] = new Universe5(initialCells, matrix, numberOfStates, isCircular);
         }
 
-        MainWindow mainWindow = new MainWindow("Random example");
-        mainWindow.addMeasure(new NonZeroPercentage());
+        UniversesWindow mainWindow = new UniversesWindow(universes, "Random example");
         mainWindow.addMeasure(new AvgNeighborColorIndex5());
         mainWindow.addMeasure(new Gini());
-        mainWindow.setSleepTimeInMilliseconds(100);
-        mainWindow.setUniverses(universes);
+        mainWindow.addMeasure(new NonZeroPercentage());
     }
 }

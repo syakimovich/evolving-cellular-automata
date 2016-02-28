@@ -4,8 +4,8 @@ import org.yakimovich.evolca.Universe;
 import org.yakimovich.evolca.UniverseSum;
 import org.yakimovich.evolca.measures.AvgNeighborColorIndex5;
 import org.yakimovich.evolca.measures.Gini;
-import org.yakimovich.evolca.ui.MainWindow;
-import org.yakimovich.evolca.utils.ArrayUtils;
+import org.yakimovich.evolca.measures.NonZeroPercentage;
+import org.yakimovich.evolca.ui.UniversesWindow;
 import org.yakimovich.evolca.utils.InitialStateGenerator;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class GameOfLife {
         int numberOfNeighbors = 8;
         boolean isCircular = true;
 
-        List<Universe> universes = new ArrayList<Universe>();
+        Universe[] universes = new Universe[10];
         for(int i = 0; i < 10; i++){
             char[][] initialCells = InitialStateGenerator.createRandom(size, size, numberOfStates);
             int[][] thresholds = new int[2][2];
@@ -37,14 +37,12 @@ public class GameOfLife {
             resultStates[1][1] = 1;
             resultStates[1][2] = 0;
 
-            Universe u = new UniverseSum(initialCells, numberOfNeighbors, thresholds, resultStates, numberOfStates, isCircular);
-            universes.add(u);
+            universes[i] = new UniverseSum(initialCells, numberOfNeighbors, thresholds, resultStates, numberOfStates, isCircular);
         }
 
-        MainWindow mainWindow = new MainWindow("Simple random example");
+        UniversesWindow mainWindow = new UniversesWindow(universes, "Game Of Life example");
         mainWindow.addMeasure(new AvgNeighborColorIndex5());
         mainWindow.addMeasure(new Gini());
-        mainWindow.setSleepTimeInMilliseconds(100);
-        mainWindow.setUniverses(universes);
+        mainWindow.addMeasure(new NonZeroPercentage());
     }
 }
