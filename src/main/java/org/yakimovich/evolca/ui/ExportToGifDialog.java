@@ -7,8 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
+/**
+ * Crude dialog to export Universe to gif.
+ */
 public class ExportToGifDialog extends JDialog {
     private JTextField ageFromField = new JTextField("100");
     private JTextField ageToField = new JTextField("120");

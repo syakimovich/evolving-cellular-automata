@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Right click menu with different operations on universes.
+ */
 public class UniversePopupMenu extends JPopupMenu {
     public UniversePopupMenu(UniversePanel universePanel){
         JMenuItem start = new JMenuItem("Start");

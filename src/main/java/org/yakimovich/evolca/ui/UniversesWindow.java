@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Window to display universes, usually 10 in 2 rows.
+ */
 public class UniversesWindow extends JFrame {
     private UniversePanel[] universePanels = null;
     private List<Measure> measures = new ArrayList<Measure>();

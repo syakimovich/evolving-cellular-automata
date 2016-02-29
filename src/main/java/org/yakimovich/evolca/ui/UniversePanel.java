@@ -12,6 +12,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * JPanel with BareUniverse panel to display cells and JLabel to display additional information.
+ */
 public class UniversePanel extends JPanel {
     private JLabel label;
     private BareUniversePanel universePanel;

@@ -6,6 +6,9 @@ import org.jenetics.Genotype;
 import org.jenetics.IntegerChromosome;
 import org.yakimovich.evolca.Universe5;
 
+/**
+ * Helpful functions to work with Jenetics library.
+ */
 public class JeneticsUtils {
     public static char[][] chromosomeTo2DArray(CharacterChromosome ch, int size1, int size2){
         char[][] result = new char[size1][size2];

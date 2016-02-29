@@ -12,17 +12,16 @@ import org.yakimovich.evolca.measures.NonZeroPercentage;
 import org.yakimovich.evolca.ui.UniversesWindow;
 import org.yakimovich.evolca.utils.JeneticsUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.jenetics.engine.EvolutionResult.toBestPhenotype;
 
+/**
+ * Example of using Jenetics in a search for interesting Universe5. 10 universes are found and displayed.
+ */
 public class SimpleJeneticsExample {
 
     private static boolean isCircular = true;
     private static char numberOfStates = 4;
     private static int size = 100;
-    private static int ticks = 25;
     private static int evolutions = 10;
     private static int cellsChromosomeLength = size * size;
     private static int matrixChromosomeLength = numberOfStates * numberOfStates *

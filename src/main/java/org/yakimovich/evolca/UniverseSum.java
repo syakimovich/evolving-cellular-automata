@@ -2,6 +2,9 @@ package org.yakimovich.evolca;
 
 import org.yakimovich.evolca.utils.ArrayUtils;
 
+/**
+ * Cell next state depends only from the sum of neighboring cells states.
+ */
 public class UniverseSum extends Universe{
     private int[][] thresholds;
     private char[][] resultStates;

@@ -6,6 +6,9 @@ import org.yakimovich.evolca.utils.GraphicsUtils;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * JPanel that displays just the cells.
+ */
 public class BareUniversePanel extends JPanel {
     private Universe universe;
     private int zoom;

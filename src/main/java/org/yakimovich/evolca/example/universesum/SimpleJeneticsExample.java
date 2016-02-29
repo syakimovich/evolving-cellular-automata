@@ -2,7 +2,6 @@ package org.yakimovich.evolca.example.universesum;
 
 import org.jenetics.*;
 import org.jenetics.engine.Engine;
-import org.jenetics.util.CharSeq;
 import org.jenetics.util.Factory;
 import org.yakimovich.evolca.Universe;
 import org.yakimovich.evolca.UniverseSum;
@@ -13,11 +12,12 @@ import org.yakimovich.evolca.ui.UniversesWindow;
 import org.yakimovich.evolca.utils.ArrayUtils;
 import org.yakimovich.evolca.utils.JeneticsUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.jenetics.engine.EvolutionResult.toBestPhenotype;
 
+/**
+ * Example of using Jenetics in a search for interesting UniverseSum. 10 universes are found and displayed.
+ * It may take some time to calculate.
+ */
 public class SimpleJeneticsExample {
 
     private static boolean isCircular = true;
@@ -54,7 +54,6 @@ public class SimpleJeneticsExample {
 
     public static void main(String[] args){
         long startTime = System.currentTimeMillis();
-        final CharSeq chars = CharSeq.of((char)0, (char) (numberOfStates - 1));
         Universe[] universes = new Universe[10];
 
         double fitnessSum = 0;

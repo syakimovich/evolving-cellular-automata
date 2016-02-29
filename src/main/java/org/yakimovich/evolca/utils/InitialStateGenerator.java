@@ -1,5 +1,8 @@
 package org.yakimovich.evolca.utils;
 
+/**
+ * Functions to generate initial state.
+ */
 public class InitialStateGenerator {
     public static char[][] createRandom(int width, int height, char numberOfStates){
         return ArrayUtils.createRandom2DCharArray(height, width, numberOfStates);

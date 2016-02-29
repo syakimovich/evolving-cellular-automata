@@ -14,6 +14,9 @@ import java.awt.image.WritableRaster;
 import java.io.IOException;
 import java.util.Iterator;
 
+/**
+ * Helpful functions to work with graphics.
+ */
 public class GraphicsUtils {
     public static BufferedImage createImage(Universe universe, int zoom){
         BufferedImage img = new BufferedImage(universe.getWidth() * zoom,

@@ -8,9 +8,9 @@ import org.yakimovich.evolca.measures.NonZeroPercentage;
 import org.yakimovich.evolca.ui.UniversesWindow;
 import org.yakimovich.evolca.utils.InitialStateGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Conway's Game of Life implementation as UniverseSum.
+ */
 public class GameOfLife {
     public static void main(String[] args){
         char size = 100;

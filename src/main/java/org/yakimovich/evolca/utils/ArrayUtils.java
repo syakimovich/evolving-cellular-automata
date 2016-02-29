@@ -3,6 +3,9 @@ package org.yakimovich.evolca.utils;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Helpful functions to work with arrays.
+ */
 public class ArrayUtils{
     public static char[][] copy2DArray(char[][] original){
         char[][] result = new char[original.length][];

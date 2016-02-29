@@ -4,6 +4,9 @@ import org.yakimovich.evolca.Measure;
 import org.yakimovich.evolca.Universe;
 import org.yakimovich.evolca.utils.ArrayUtils;
 
+/**
+ * Percentage of cells that are not in a state 0.
+ */
 public class NonZeroPercentage implements Measure {
 
     @Override

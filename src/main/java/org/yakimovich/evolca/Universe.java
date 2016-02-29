@@ -5,7 +5,7 @@ import org.yakimovich.evolca.utils.ArrayUtils;
 import java.io.*;
 
 /**
- * Matrix of cells in different states.
+ * Cellular automaton, 2D array of cells in different states that can change each tick.
  */
 public abstract class Universe implements Serializable {
     private int age = 0;

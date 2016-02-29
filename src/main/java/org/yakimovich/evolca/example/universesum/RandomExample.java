@@ -9,6 +9,13 @@ import org.yakimovich.evolca.ui.UniversesWindow;
 import org.yakimovich.evolca.utils.ArrayUtils;
 import org.yakimovich.evolca.utils.InitialStateGenerator;
 
+/**
+ * Randomly generates 10 Universe5 universes. You can specify parameters to the main function to replace defaults:
+ * args[0] - number of states (currently 4 or 8)
+ * args[1] - how many neighbors UniverseSum are using in sum calculation, usually 4 or 8
+ * args[2] - initial state: "random", "point" or "rectangular" (3 colored rectangles)
+ * args[3] - probability of replacing items in resultStates array with 0, to make things more interesting
+ */
 public class RandomExample {
     public static void main(String[] args){
         int size = 100;
@@ -36,7 +43,7 @@ public class RandomExample {
 
         Universe[] universes = new Universe[10];
         for(int i = 0; i < 10; i++){
-            char[][] initialCells = null;
+            char[][] initialCells;
             if(initialState.equalsIgnoreCase("point")){
                 initialCells = InitialStateGenerator.create1Point(size, size, (char)1);
             } else if(initialState.equalsIgnoreCase("rectangular")){

@@ -3,6 +3,9 @@ package org.yakimovich.evolca.measures;
 import org.yakimovich.evolca.Measure;
 import org.yakimovich.evolca.Universe;
 
+/**
+ * Gini coefficient of inequality of the number of cells in different states.
+ */
 public class Gini implements Measure {
 
     @Override
